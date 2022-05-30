@@ -51,14 +51,20 @@ public class LifeDataProvider implements LifecycleEventObserver {
     public static <P extends LifecycleData> P createInstance(@NonNull Class<P> modelClass, Context context) {
         try {
             if (context != null) {
-                Constructor<P> constructor = modelClass.getConstructor(Context.class);
+                Constructor<P> constructor = modelClass.getDeclaredConstructor(Context.class);
                 if (constructor != null) {
+                    constructor.setAccessible(true);
                     return constructor.newInstance(context);
                 }
             }
             return modelClass.newInstance();
         } catch (Exception e) {
-            throw new RuntimeException("Cannot create an instance of " + modelClass, e);
+            try {
+                return modelClass.newInstance();
+            } catch (Exception e1) {
+                e1.printStackTrace();
+                throw new RuntimeException("Cannot create an instance of " + modelClass, e);
+            }
         }
     }
 
