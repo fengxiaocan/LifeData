@@ -40,4 +40,4 @@
             ...
       }
       
-另外的功能实现请看:
+另外的用法功能请看[BaseMvp](https://github.com/fengxiaocan/BaseMvp)
