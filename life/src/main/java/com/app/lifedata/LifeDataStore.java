@@ -17,6 +17,10 @@ public class LifeDataStore {
         return mMap.get(key);
     }
 
+    final boolean remove(String key){
+        return mMap.remove(key) != null;
+    }
+
     Set<String> keys() {
         return mMap.keySet();
     }

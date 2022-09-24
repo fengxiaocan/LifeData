@@ -24,6 +24,14 @@ public class LifeDataActivity extends AppCompatActivity implements LifeDataProvi
         return provider().get(key, modelClass);
     }
 
+    public <T extends LifecycleData> boolean removeProvider(@NonNull Class<T> modelClass) {
+        return provider().remove(modelClass);
+    }
+
+    public boolean removeProvider(@NonNull String key) {
+        return provider().remove(key);
+    }
+
     @NonNull
     @Override
     public <P extends LifecycleData> P create(@NonNull Class<P> modelClass) {

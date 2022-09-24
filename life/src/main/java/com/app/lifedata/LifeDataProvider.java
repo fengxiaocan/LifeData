@@ -100,6 +100,18 @@ public class LifeDataProvider implements LifecycleEventObserver {
         return (P) lifecycleData;
     }
 
+
+    @NonNull
+    public <P extends LifecycleData> boolean remove(@NonNull Class<P> modelClass) {
+        String canonicalName = modelClass.getCanonicalName();
+        return lifeDataStore.remove(canonicalName);
+    }
+
+    @NonNull
+    public boolean remove(@NonNull String key) {
+        return lifeDataStore.remove(key);
+    }
+
     public void put(@NonNull LifecycleData presenter) {
         put(presenter.getClass().getCanonicalName(), presenter);
     }
